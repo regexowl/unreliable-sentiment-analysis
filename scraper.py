@@ -84,9 +84,9 @@ def howDoTheyFeel(vaderComp, username, sinceDate):
 # MAIN
 def main():
     # TODO username exists check
-    username = "elonmusk" #input("Username: ") # read username from the input
+    username = input("Username: ") # read username from the input
     # TODO date format check
-    sinceDate = "2022-04-20" #input("Date (YYYY-MM-DD): ") # read date from the input
+    sinceDate = input("Date (YYYY-MM-DD): ") # read date from the input
     outfile = "results.csv"
 
     scrapeTweets(outfile, username, sinceDate)
