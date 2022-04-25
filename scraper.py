@@ -2,7 +2,7 @@
    -------------------------------------------------
    Totally Unreliable Sentiment Analysis
    Author: regexowl
-   Updated: 21-04-2022
+   Created: 21-04-2022
    -------------------------------------------------
 
    My first journey into the wonderful world of sentiment analysis. 
@@ -11,14 +11,34 @@
 
 '''
 
+# TODO username exists check
+# TODO date format check
+# TODO remove csv, use just dataframe
+# TODO -h text?
+
 import os
 from datetime import date, datetime, timedelta
+from argparse import ArgumentParser
 import twint as tw # Twitter scraping
 import pandas as pd # csv processing
 import nltk # sentiment analysis
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 nltk.download('vader_lexicon') # downloads resources for sentiment analysis
+
+# Parse arguments
+def parseArguments():
+    parser = ArgumentParser()
+    parser.add_argument("user", help="user's Twitter handle")
+    parser.add_argument("date", help="date to analyse")
+    
+    args = parser.parse_args()
+
+    # Assign parsed values to variables
+    username = args.user
+    sinceDate = args.date
+
+    return username, sinceDate
 
 # Scrape Twitter for a tweet dataset based on the username and the date
 def scrapeTweets(outfile, username, sinceDate):
@@ -83,12 +103,9 @@ def howDoTheyFeel(vaderComp, username, sinceDate):
 
 # MAIN
 def main():
-    # TODO username exists check
-    username = input("Username: ") # read username from the input
-    # TODO date format check
-    sinceDate = input("Date (YYYY-MM-DD): ") # read date from the input
     outfile = "results.csv"
 
+    username, sinceDate = parseArguments()
     scrapeTweets(outfile, username, sinceDate)
     sentimentAnalysis(outfile, username, sinceDate)
 
