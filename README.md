@@ -17,6 +17,7 @@ This project uses twint for Twitter scraping and Natural Language Toolkit for th
 `python3 scraper.py username date`
 
 `username` being the Twitter handle of a user you'd like to analyse
+
 `date` being the day you'd like to analyse
 
 ### Citations
